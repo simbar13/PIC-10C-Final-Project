@@ -8,7 +8,8 @@ using namespace std;
 
 class tracker {
 public:
-
+	tracker();
+	void add_event(string yo, int yi){ events.add_event(yo, yi); }
 
 private:
 	vector<account> bank;
