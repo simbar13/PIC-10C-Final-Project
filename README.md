@@ -7,3 +7,5 @@ My original plan for this project was to create a QT application that allows the
 Unfortunately, I don't think I will be able to set up the QT interface, and will most likely finish with a version of this that is meant to be used in Visual C++ or some other standard compiler.  I don't know yet how well it will be able to save data.
 
 I am going to continue to work on this project in the coming couple weeks (currently 06/09/2020).  I do not know if a final working version will be ready by the time this project is meant to be graded, but I will hopefully have it working soon.  As of today, the user can generate their tracker by inputting their data, I am going to work on saving data/updating data in parallel with studying for the final.  
+
+Latest update (6/9/2020): user can succesfully create their tracker, options to update/view stats and goals are WIP.  There is a compiling program that will achieve at least some of the goal functionality.  Next steps: finish update/view options, improve UI, save data more efficiently.
