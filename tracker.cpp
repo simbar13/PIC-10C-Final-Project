@@ -55,22 +55,61 @@ void fitness::eat(double amount)
 
 tracker::tracker()
 {
-	cout << "Financial Information:" << endl << "Enter number of accounts: ";
-	int na;
-	cin >> na;
-	cout << endl;
-	for (int i = 0; i < na; i++)
+	cout << "Press 1 to create a new tracker, press 2 to update current tracker." << endl;
+	int wi;
+	cin >> wi;
+	if (wi == 1)
 	{
-		cout << "Enter account name, hit return, enter account type, hit return, and then enter account balance for account #" << i << ": ";
-		string name;
-		getline(cin, name);
-		string type;
-		getline(cin, type);
-		double yeet;
-		cin >> yeet;
-		account y(yeet, type, name);
-		bank.push_back(y);
+		cout << "Financial Information:" << endl << "Enter number of accounts: ";
+		int na = 0;
+		cin >> na;
+		int i = 0;
+		while(i<na)
+		{
+			char ws;
+			ws = cin.get();
+			string name;
+			string type;
+			double yeet;
+			cout << "Enter account #"<<i+1<<" name"<<endl;
+			getline(cin, name);
+			cout << "Enter account #" << i + 1 << " type" << endl;
+			getline(cin, type);
+			cout << "Enter account #" << i + 1 << " balance" << endl;
+			cin >> yeet;
+			account y(yeet, type, name);
+			bank.push_back(y);
+			i++;
+		}
+		cout << "Upcoming Schedule:" << endl;
+		cout << "Enter number of upcoming events: ";
+		int nb;
+		cin >> nb;
+		cout << endl;
+		for (int i = 0; i < nb; i++)
+		{
+			char ws;
+			ws = cin.get();
+			cout << "Enter the name of event #" << i+1 << ": ";
+			string name;
+			getline(cin, name);
+			cout << "Enter the number of days until " << name << ": ";
+			int yeet;
+			cin >> yeet;
+			events.add_event(name, yeet);
+		}
+		cout << "Fitness Goals:" << endl<<"Enter your goal calorie intake: "<<endl;
+		double c;
+		cin >> c;
+		cout << "Enter you goal weight: ";
+		double w;
+		cin >> w;
+		fitness y(c, w, 0);
+		regime = y;
 	}
-	cout << "Upcoming Schedule:" << endl;
 }
 
+int main()
+{
+	tracker* y =new tracker();
+}
