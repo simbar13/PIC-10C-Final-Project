@@ -38,13 +38,13 @@ fitness::fitness(double cal, double weight, int days_straight)
 		cout << "Consider Taking a Rest Day";
 }
 
-void fitness::exercise(int amount, string type)
+void fitness::exercise(double amount, char type)
 {
-	if (type == "running")
-		goal_c -= amount * 100;
-	if (type == "strength")
+	if (type == 'r')
+		goal_c -= amount * 650;
+	if (type == 'w')
 		goal_c -= amount * 180;
-	if (type == "surfing")
+	if (type == 's')
 		goal_c -= 250 * amount;
 }
 
@@ -109,7 +109,116 @@ tracker::tracker()
 	}
 }
 
+void tracker::update_tracker()
+{
+	bool continuer = 1;
+	while (continuer)
+	{
+
+		cout << "Would you like to update your current tracker? (y/n)" << endl;
+		char hi;
+		cin >> hi;
+		if (hi == 'n')
+			return;
+	
+		cout << "What aspect of your tracker would you like to update?" << endl << "Finance (press 1), Schedule (press 2), Fitness, (press 3)" << endl;
+		int which;
+		cin >> which;
+		cout << endl;
+		switch (which) {
+		case 1:
+		{cout << "You selected finance, please enter the name of the account you wish to modify: ";
+		char ws;
+		ws = cin.get();
+		string name = "";
+		getline(cin, name);
+		cout << "Are you making a withdrawl (press w) or a deposit (press d)?" << endl;
+		char c;
+		cin >> c;
+		cout << "Enter the value you would like to change this account by: " << endl;
+		double d;
+		cin >> d;
+		int a = bank.size();
+		for (int i = 0; i < a; i++)
+		{
+			if (bank[i].getname() == name)
+			{
+				if (c == 'w')
+					bank[i].alter(d, 0);
+				else
+					bank[i].alter(d, 1);
+			}
+
+		}
+		}
+		break;
+
+		case 2:
+		{
+			cout << "You selected Schedule, would you like to add an event (press a) or find the timing of an event (press t)?" << endl;
+			char maybe;
+			cin >> maybe;
+			if (maybe == 'a')
+			{
+				char ws;
+				ws = cin.get();
+				cout << "Enter the name of your new event: ";
+				string name;
+				getline(cin, name);
+				cout << endl << "How many days until " << name << "? ";
+				int days;
+				cin >> days;
+				add_event(name, days);
+				cout << "You added " << name << " which occurs in " << days << " days" << endl;
+			}
+			else if (maybe == 't')
+			{
+				cout << "Enter the name of the event you want to look up: ";
+				char ws;
+				ws = cin.get();
+				string name;
+				getline(cin, name);
+				cout << "There are " << till_event(name) << " days until " << name << endl;
+			}
+
+
+		}
+		break;
+
+		case 3:
+		{
+			cout << "You selected fitness." << endl;
+			cout << "Did you exercise (press x) or eat (press e)?";
+			char c;
+			cin >> c;
+			if (c == 'x')
+			{
+				cout << endl<<"What type of exercise did you do (press r for running, s for surfing, or w for weights)?";
+				char type;
+				cin >> type;
+				cout <<endl<< "For how many hours did you exercise?";
+				double d;
+				cin >> d;
+				regime.exercise(d, type);
+			}
+			if (c == 'e')
+			{
+				cout << endl << "How many calories did you eat?";
+				double d;
+				cin >> d;
+				regime.eat(d);
+			}
+		}
+			break;
+
+		default:
+			break;
+		}
+	}
+}
+
 int main()
 {
 	tracker* y =new tracker();
+	y->update_tracker();
 }
