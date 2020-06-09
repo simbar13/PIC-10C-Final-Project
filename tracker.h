@@ -6,16 +6,6 @@
 #include<map>
 using namespace std;
 
-class tracker {
-public:
-	tracker();
-	void add_event(string yo, int yi){ events.add_event(yo, yi); }
-
-private:
-	vector<account> bank;
-	schedule events;
-	fitness regime;
-};
 
 
 
@@ -46,18 +36,30 @@ private:
 class fitness {
 public:
 	fitness(double cal, double weight, int days_straight);
+	fitness() { ; }
 	void exercise(int amount, string type);
 	void eat(double amount);
 
 	
 
 private:
-	double goal_c;
-	double goal_w;
-	int need_rest;
+	double goal_c=0;
+	double goal_w=0;
+	int need_rest=0;
 
 };
 
+
+class tracker {
+public:
+	tracker();
+	void add_event(string yo, int yi) { events.add_event(yo, yi); }
+
+private:
+	vector<account> bank;
+	schedule events;
+	fitness regime;
+};
 
 
 
