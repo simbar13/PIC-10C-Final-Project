@@ -14,6 +14,7 @@ class account {
 public:
 	account(double start, string kind, string nombre);
 	void alter(double amount, bool deposit);
+	string getname() { return name; }
 
 private:
 	double value;
@@ -37,7 +38,7 @@ class fitness {
 public:
 	fitness(double cal, double weight, int days_straight);
 	fitness() { ; }
-	void exercise(int amount, string type);
+	void exercise(double amount, char type);
 	void eat(double amount);
 
 	
@@ -54,6 +55,8 @@ class tracker {
 public:
 	tracker();
 	void add_event(string yo, int yi) { events.add_event(yo, yi); }
+	void update_tracker();
+	int till_event(string may) { return events.lookup(may); }
 
 private:
 	vector<account> bank;
